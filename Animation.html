@@ -1,69 +1,437 @@
-# Animation
-This is animation project
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Animation</title>
-  <style>
-    *{
-  margin: 0;
-  padding:0;
-  box-sizing:border-box;
-}
-body{
-  min-height:100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #181818;
-}
-div{
-  width: 200px;
-  height: 200px;
-  box-shadow: 16px 14px 20px #0000008c;
-  border-radius:5px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-div::before{
-  content:"";
-  background-image: conic-gradient(#ff0052 20deg, transparent 120deg);
-  width:150%;
-  height:150%;
-  position: absolute;
-  animation: rotate 2s linear infinite;
-}
-div::after{
-  content:"Animation";
-  width:190px;
-  height:190px;
-  background:#101010;
-  position: absolute;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color:#ff0052;
-  font-size:larger;
-  letter-spacing: 5px;
-  box-shadow: inset 20px 20px 20px #0000008C;
-}
-@keyframes rotate{
-  0%{
-     transform: rotate(0deg);
-  }
-  100%{
-    transform: rotate(360deg);
-  }
-}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Animations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --light: #f7f7f7;
+            --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 8s infinite alternate;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .animation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .animation-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+
+        .animation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.15);
+        }
+
+        .card-header {
+            padding: 25px;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+
+        .card-content {
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Animation Elements */
+        .floating-element {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background: var(--gradient);
+            border-radius: 50%;
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .pulse-element {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background: var(--accent);
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .rotating-element {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background: var(--primary);
+            border-radius: 10px;
+            animation: rotate 3s linear infinite;
+        }
+
+        .morphing-element {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background: var(--secondary);
+            animation: morph 6s infinite;
+        }
+
+        .slide-element {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background: var(--primary);
+            border-radius: 10px;
+            animation: slide 4s infinite;
+        }
+
+        .bounce-element {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: bounce 1.5s infinite;
+        }
+
+        .glow-element {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            background: var(--primary);
+            border-radius: 10px;
+            position: relative;
+            animation: glow 3s infinite alternate;
+        }
+
+        .glow-element::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 15px;
+            background: inherit;
+            filter: blur(20px);
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .text-animation {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textGlow 3s infinite alternate;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes morph {
+            0% { border-radius: 10px; }
+            25% { border-radius: 50%; }
+            50% { border-radius: 0%; }
+            75% { border-radius: 50%; }
+            100% { border-radius: 10px; }
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(150px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(108, 92, 231, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(108, 92, 231, 0.8); }
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(108, 92, 231, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(108, 92, 231, 0.6); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.3;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            to {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: #666;
+            margin-top: 50px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .animation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Animations</h1>
+            <p class="subtitle">A collection of beautiful, smooth, and responsive animations created with HTML, CSS, and JavaScript</p>
+        </header>
+        
+        <div class="animation-grid">
+            <div class="animation-card">
+                <div class="card-header">
+                    <h3>Floating Element</h3>
+                </div>
+                <div class="card-content">
+                    <div class="floating-element"></div>
+                    <p>A smooth floating animation with easing</p>
+                </div>
+            </div>
+            
+            <div class="animation-card">
+                <div class="card-header">
+                    <h3>Pulse Effect</h3>
+                </div>
+                <div class="card-content">
+                    <div class="pulse-element"></div>
+                    <p>A subtle pulsing animation for attention</p>
+                </div>
+            </div>
+            
+            <div class="animation-card">
+                <div class="card-header">
+                    <h3>Continuous Rotation</h3>
+                </div>
+                <div class="card-content">
+                    <div class="rotating-element"></div>
+                    <p>Smooth 360° rotation animation</p>
+                </div>
+            </div>
+            
+            <div class="animation-card">
+                <div class="card-header">
+                    <h3>Shape Morphing</h3>
+                </div>
+                <div class="card-content">
+                    <div class="morphing-element"></div>
+                    <p>Transforms between different shapes</p>
+                </div>
+            </div>
+            
+            <div class="animation-card">
+                <div class="card-header">
+                    <h3>Slide Animation</h3>
+                </div>
+                <div class="card-content">
+                    <div class="slide-element"></div>
+                    <p>Horizontal sliding with smooth transitions</p>
+                </div>
+            </div>
+            
+            <div class="animation-card">
+                <div class="card-header">
+                    <h3>Bounce Effect</h3>
+                </div>
+                <div class="card-content">
+                    <div class="bounce-element"></div>
+                    <p>Realistic bouncing animation</p>
+                </div>
+            </div>
+            
+            <div class="animation-card">
+                <div class="card-header">
+                    <h3>Glow Effect</h3>
+                </div>
+                <div class="card-content">
+                    <div class="glow-element"></div>
+                    <p>Subtle glowing animation with shadow</p>
+                </div>
+            </div>
+            
+            <div class="animation-card">
+                <div class="card-header">
+                    <h3>Text Glow</h3>
+                </div>
+                <div class="card-content">
+                    <div class="text-animation">Animated Text</div>
+                    <p>Text with gradient and glow effect</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Created with ❤️ | Premium Animations Showcase</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 10 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                const hue = Math.random() * 360;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.background = `hsla(${hue}, 70%, 60%, 0.5)`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            createParticles();
+            
+            // Add scroll animation to cards
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.animation-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
